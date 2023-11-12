@@ -33,6 +33,7 @@ services:
     env_file:
       - .env
 
+  # Flower service for monitoring Celery workers
   flower:
     image: mher/flower
     command: celery -A main.celery_app flower
@@ -42,6 +43,8 @@ services:
       - "5555:5555"
     depends_on:
       - worker  # Flower should depend on the worker since it's monitoring it
+    volumes:
+      - ./:/app
 
   # Nginx as the reverse proxy
   nginx:
