@@ -39,6 +39,7 @@ services:
     command: celery -A main.celery_app flower
     environment:
       - FLOWER_BASIC_AUTH=${FLOWER_BASIC_AUTH}
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/0
     ports:
       - "5555:5555"
     depends_on:
