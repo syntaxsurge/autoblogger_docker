@@ -42,9 +42,7 @@ services:
     ports:
       - "5555:5555"
     depends_on:
-      - worker  # Flower should depend on the worker since it's monitoring it
-    volumes:
-      - ./:/app
+      - worker
 
   # Nginx as the reverse proxy
   nginx:
