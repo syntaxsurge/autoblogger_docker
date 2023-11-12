@@ -34,8 +34,7 @@ services:
       - .env
 
   flower:
-    image: mher/flower
-    command: flower --broker=redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/0 --broker_api=redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/0 --port=5555
+    command: celery -A main.celery_app flower
     environment:
       - FLOWER_BASIC_AUTH=${FLOWER_BASIC_AUTH}
     ports:
