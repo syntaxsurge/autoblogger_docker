@@ -67,3 +67,10 @@ To see processes logs
 ```commandline
 docker-compose logs
 ```
+
+To view real-time logs, change `service_name` to the name of the service whose logs you want to see.
+```commandline
+docker-compose logs -f service_name
+```
+
+available services in the docker-compose: `api`, `worker`, `nginx`
