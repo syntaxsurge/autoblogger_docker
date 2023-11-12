@@ -1,11 +1,18 @@
 version: '3.8'
 
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "15m"
+    max-file: "3"
+
 services:
   # FastAPI application
   api:
     image: syntaxsurge/autoblogger:latest
     command: gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --workers 8
     restart: on-failure
+    logging: *default-logging
     env_file:
       - .env
 
@@ -14,6 +21,7 @@ services:
     image: syntaxsurge/autoblogger:latest
     command: celery -A main.celery_app worker --loglevel=info
     restart: on-failure
+    logging: *default-logging
     env_file:
       - .env
 
@@ -27,3 +35,4 @@ services:
     depends_on:
       - api
     restart: on-failure
+    logging: *default-logging
