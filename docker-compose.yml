@@ -25,7 +25,7 @@ services:
     ports:
       - "7240:7240"
     volumes:
-      - ./nginx-autoblogger:/etc/nginx/conf.d
+      - ./nginx-config:/etc/nginx/conf.d
     depends_on:
       - api
     restart: on-failure
