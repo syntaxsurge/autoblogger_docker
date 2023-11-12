@@ -14,7 +14,9 @@ services:
     restart: on-failure
     logging: *default-logging
     environment:
-      PYTHONUNBUFFERED: 1
+      - SERVICE_NAME=api
+    volumes:
+      - ./host_logs:/app/logs
     env_file:
       - .env
 
@@ -25,7 +27,9 @@ services:
     restart: on-failure
     logging: *default-logging
     environment:
-      PYTHONUNBUFFERED: 1
+      - SERVICE_NAME=celery
+    volumes:
+      - ./host_logs:/app/logs
     env_file:
       - .env
 
