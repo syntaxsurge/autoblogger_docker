@@ -35,7 +35,7 @@ services:
 
   # Flower service for monitoring Celery workers
   flower:
-    image: mher/flower
+    image: syntaxsurge/autoblogger:latest  # Use the same image as the worker
     command: celery -A main.celery_app flower
     environment:
       - FLOWER_BASIC_AUTH=${FLOWER_BASIC_AUTH}
