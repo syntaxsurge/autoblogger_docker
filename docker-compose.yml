@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # FastAPI application
+  api:
+    image: syntaxsurge/autoblogger:latest
+    command: gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --workers 4 --threads 4
+    ports:
+      - "8000:8000"
+    restart: on-failure
+    env_file:
+      - .env
+
+  # Celery worker
+  worker:
+    image: syntaxsurge/autoblogger:latest
+    command: celery -A main.celery_app worker --loglevel=info
+    restart: on-failure
+    env_file:
+      - .env
+
+  # Nginx as the reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "7240:7240"
+    volumes:
+      - ./nginx-autoblogger:/etc/nginx/conf.d
+    depends_on:
+      - api
+    restart: on-failure
