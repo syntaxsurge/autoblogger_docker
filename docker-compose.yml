@@ -34,6 +34,7 @@ services:
       - .env
 
   flower:
+    image: mher/flower
     command: celery -A main.celery_app flower
     environment:
       - FLOWER_BASIC_AUTH=${FLOWER_BASIC_AUTH}
