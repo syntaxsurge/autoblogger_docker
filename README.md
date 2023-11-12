@@ -48,9 +48,14 @@ To pull the latest changes:
 docker-compose pull
 ```
 
-To compose new changes
+To compose new changes (this will **stop** the current docker, so **you DON'T need to run** `docker-compose down`)
 ```commandline
 docker-compose up -d
+```
+
+If you don't have any changes to your images, but you have changes to your `.yml` file, you can force compose it:
+```commandline
+docker-compose up -d --force-recreate
 ```
 
 To check if processes health
