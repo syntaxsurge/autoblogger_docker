@@ -1,0 +1,16 @@
+server {
+    listen 7240;
+    server_name _;
+
+    # To handle large payloads
+    client_max_body_size 100M;
+
+    location / {
+        proxy_pass http://api:8000;  # Use the service name defined in docker-compose.yml
+        proxy_set_header Host $host:$server_port;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $host:$server_port;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

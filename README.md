@@ -25,3 +25,40 @@ docker login
 ```bash
 docker-compose up -d
 ```
+
+In your local machine:
+
+To rebuild the docker files with new changess:
+```commandline
+sudo docker build -t syntaxsurge/autoblogger:latest .
+```
+
+To push the docker files
+```commandline
+sudo docker push syntaxsurge/autoblogger:latest
+```
+
+To stop and remove the docker processes
+```commandline
+docker-compose down
+```
+
+To pull the latest changes:
+```commandline
+docker-compose pull
+```
+
+To compose new changes
+```commandline
+docker-compose up -d
+```
+
+To check if processes health
+```commandline
+docker-compose ps
+```
+
+To see processes logs
+```commandline
+docker-compose logs
+```
