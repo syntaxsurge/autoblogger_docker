@@ -23,9 +23,7 @@ services:
   # Redis service
   redis:
     image: redis:latest
-    command: redis-server /usr/local/etc/redis/redis.conf --appendonly yes --bind 0.0.0.0
-    volumes:
-      - redis-data:/data
+    command: redis-server --appendonly yes --bind 0.0.0.0
     ports:
       - "6379:6379"
     logging: *default-logging
@@ -68,6 +66,3 @@ services:
       - api
     restart: on-failure
     logging: *default-logging
-
-volumes:
-  redis-data:
