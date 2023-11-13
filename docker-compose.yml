@@ -32,7 +32,7 @@ services:
   # Celery worker
   worker:
     image: syntaxsurge/autoblogger:latest
-    command: celery -A main.celery_app worker --loglevel=info --concurrency=2 --pool=gevent
+    command: celery -A main.celery_app worker --loglevel=info --concurrency=3
     restart: on-failure
     logging: *default-logging
     depends_on:
