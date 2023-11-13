@@ -23,9 +23,10 @@ services:
   # Redis service
   redis:
     image: redis:latest
-    command: redis-server --appendonly yes --bind 0.0.0.0
+    # Do not make it accessible on the internet
+    command: redis-server --appendonly yes --bind 127.0.0.1
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
     logging: *default-logging
 
   # Celery worker
