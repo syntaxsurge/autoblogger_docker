@@ -10,7 +10,7 @@ services:
   # FastAPI application
   api:
     image: syntaxsurge/autoblogger:latest
-    command: gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --workers 8
+    command: gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --workers 4
     restart: on-failure
     logging: *default-logging
     environment:
@@ -32,7 +32,7 @@ services:
   # Celery worker
   worker:
     image: syntaxsurge/autoblogger:latest
-    command: celery -A main.celery_app worker --loglevel=info --concurrency=16
+    command: celery -A main.celery_app worker --loglevel=info
     restart: on-failure
     logging: *default-logging
     depends_on:
