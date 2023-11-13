@@ -23,8 +23,8 @@ services:
   # Redis service
   redis:
     image: redis:latest
-    # Do not make it accessible on the internet
-    command: redis-server --appendonly yes --bind 127.0.0.1
+    command: redis-server --appendonly yes --bind 0.0.0.0
+    # Ensures that Redis is only accessible from the host machine and not from the entire network or the internet
     ports:
       - "127.0.0.1:6379:6379"
     logging: *default-logging
