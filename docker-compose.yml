@@ -20,19 +20,10 @@ services:
     env_file:
       - .env
 
-  # Redis service
-  redis:
-    image: redis:latest
-    command: redis-server --appendonly yes --bind 0.0.0.0
-    # Ensures that Redis is only accessible from the host machine and not from the entire network or the internet
-    ports:
-      - "127.0.0.1:6379:6379"
-    logging: *default-logging
-
   # Celery worker
   worker:
     image: syntaxsurge/autoblogger:latest
-    command: celery -A main.celery_app worker --loglevel=info
+    command: celery -A main.celery_app worker --loglevel=WARNING --without-gossip --without-mingle
     restart: on-failure
     logging: *default-logging
     depends_on:
@@ -55,6 +46,15 @@ services:
       - "5555:5555"
     depends_on:
       - worker
+
+  # Redis service
+  redis:
+    image: redis:latest
+    command: redis-server --appendonly yes --bind 0.0.0.0
+    # Ensures that Redis is only accessible from the host machine and not from the entire network or the internet
+    ports:
+      - "127.0.0.1:6379:6379"
+    logging: *default-logging
 
   # Nginx as the reverse proxy
   nginx:
