@@ -1,7 +1,7 @@
 
 In your local machine:
 
-To rebuild the docker files with new changess:
+To rebuild the docker files with new changes:
 ```commandline
 sudo docker build -t syntaxsurge/autoblogger:latest .
 ```
