@@ -24,7 +24,7 @@ systemctl restart docker
 If you are still experiencing timeouts, then restart your computer.
 If you are still experiencing timeouts, use VPN.
 
-In Your server:
+In Your UBUNTU server:
 
 ```bash
 sudo apt update && \
@@ -65,6 +65,7 @@ To pull the latest changes:
 docker-compose pull
 ```
 
+- To run the main services (-d flag means dettached, will run even though you closed the terminal)
 To compose new changes (this will **stop** the current docker, so **you DON'T need to run** `docker-compose down`)
 ```commandline
 docker-compose up -d
