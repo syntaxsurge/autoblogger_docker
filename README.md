@@ -41,13 +41,13 @@ sudo systemctl status docker
 git clone https://github.com/syntaxsurge/autoblogger_docker.git
 ```
 
+```commandline
+cd /root/autoblogger_docker
+```
+
 ...or if you already cloned it but just want to pull the latest changes:
 ```bash
 git pull
-```
-
-```commandline
-cd autoblogger_docker
 ```
 
 - Paste the environment files
@@ -106,4 +106,13 @@ available services in the docker-compose: `api`, `worker`, `nginx`
 - For example, to see real-time celery worker logs
 ```commandline
 docker-compose logs -f worker
+```
+
+To pull latest version from GitHub and docker and compose it in one line:
+```bash
+cd /root/autoblogger_docker && \
+git pull && \
+docker-compose down && \
+docker-compose pull && \
+docker-compose up -d
 ```
