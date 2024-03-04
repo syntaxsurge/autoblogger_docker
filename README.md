@@ -41,6 +41,11 @@ sudo systemctl status docker
 git clone https://github.com/syntaxsurge/autoblogger_docker.git
 ```
 
+...or if you already cloned it but just want to pull the latest changes:
+```bash
+git pull
+```
+
 ```commandline
 cd autoblogger_docker
 ```
