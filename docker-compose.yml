@@ -9,7 +9,7 @@ x-logging: &default-logging
 services:
   # FastAPI application
   api:
-    image: syntaxsurge/autoblogger:2.2.6
+    image: syntaxsurge/autoblogger:2.2.7
     command: gunicorn main:fastapi_app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
     restart: on-failure
     logging: *default-logging
@@ -22,7 +22,7 @@ services:
 
   # Celery worker
   worker:
-    image: syntaxsurge/autoblogger:2.2.6
+    image: syntaxsurge/autoblogger:2.2.7
     command: celery -A main.celery_app worker --loglevel=WARNING --without-gossip --without-mingle
     restart: on-failure
     logging: *default-logging
@@ -37,7 +37,7 @@ services:
 
   # Flower service for monitoring Celery workers
   flower:
-    image: syntaxsurge/autoblogger:2.2.6
+    image: syntaxsurge/autoblogger:2.2.7
     command: celery -A main.celery_app flower
     environment:
       - FLOWER_BASIC_AUTH=${FLOWER_BASIC_AUTH}
